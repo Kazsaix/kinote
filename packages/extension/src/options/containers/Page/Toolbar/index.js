@@ -98,7 +98,7 @@ const Toolbar = () => {
 
   const handleExportMarkdown = () => {
     const data = MarkdownService.pagesToMarkdown([{ meta, notes }]);
-    return FileService.exportMarkdownFile(data, `yinote_${meta.title}.md`);
+    return FileService.exportMarkdownFile(data, `${meta.title}.md`);
   };
 
   const handleOpenPage = () => {
