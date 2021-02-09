@@ -21,13 +21,20 @@ class Markdown {
 
     for (let page of pages) {
       const { meta, notes } = page;
-      data += `<!-- # [${meta.title}](${meta.url}) -->\n\n`;
+      data += `Link: ${meta.url}\n`;
+      data += `Title: ${meta.title}\n`;
+
+      data += `Topics: `;
+      for (let keyword of meta.keywords) {
+        data += ` [[${keyword}]] `;
+      }
+      data += `\n`;
+      data += `Type: #video\n\n`;
+      data += `###\n`;
 
       for (let note of notes) {
-        data += `<!-- ## [${secondsToTime(note.timestamp)}](${buildAutoSeekUrl(
-          meta.url,
-          note.timestamp
-        )}) -->\n\n`;
+        data += `<a href="${buildAutoSeekUrl(meta.url, note.timestamp)}">\n`;
+        data += `<img src="${note.image}"></img></a>\n\n`;
         data += note.content + '\n\n';
       }
     }
