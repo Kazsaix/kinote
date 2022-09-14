@@ -7,3 +7,4 @@ dist/
 lerna-debug.log
 
 artifactory/
+yarn-error.log
