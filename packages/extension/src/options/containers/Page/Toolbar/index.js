@@ -98,7 +98,7 @@ const Toolbar = () => {
   };
 
   const handleObsidianExport = () => {
-    const data = MarkdownService.pagesToMarkdown([{ meta, notes }]);
+    const data = MarkdownService.pagesToObsidianMarkdown([{ meta, notes }]);
     const url = 'obsidian://share?title=' + encodeURI(meta.title) + '&data=' + btoa(data);
     window.open(url, '_blank');
 
