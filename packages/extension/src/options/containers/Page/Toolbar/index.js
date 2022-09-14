@@ -11,7 +11,8 @@ import {
   EvernoteIcon,
   GoogleDocsIcon,
   OneNoteIcon,
-  MarkdownIcon
+  MarkdownIcon,
+  ObsidianIcon
 } from '@yi-note/common/icons';
 import {
   pdf as PDFService,
@@ -96,6 +97,13 @@ const Toolbar = () => {
     });
   };
 
+  const handleObsidianExport = () => {
+    const data = MarkdownService.pagesToObsidianMarkdown([{ meta, notes }]);
+    const url = 'obsidian://share?title=' + encodeURI(meta.title) + '&data=' + btoa(data);
+    window.open(url, '_blank');
+
+  };
+
   const handleExportMarkdown = () => {
     const data = MarkdownService.pagesToMarkdown([{ meta, notes }]);
 
@@ -123,6 +131,13 @@ const Toolbar = () => {
           <PDFIcon />
         </IconButton>
       </Tooltip>
+
+      <Tooltip title={t('page.obsidian.tooltip')}>
+        <IconButton color="inherit" onClick={handleObsidianExport}>
+          <ObsidianIcon fill="#ffffff" />
+        </IconButton>
+      </Tooltip>
+
       <Tooltip title={t('page.evernote.tooltip')}>
         <IconButton
           color="inherit"
